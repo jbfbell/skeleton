@@ -44,14 +44,6 @@
 	/** Provide arbitrary classes to empty message. */
 	export let regionEmpty: string = 'text-center';
 
-	// TODO: hese are slated to be removed!
-	/** DEPRECATED: replace with allowlist */
-	export let allowlist: unknown[] = [];
-	/** DEPRECATED: replace with denylist */
-	export let blocklist: unknown[] = [];
-	// Silence warning about unused props:
-	const deprecated = [allowlist, blocklist];
-
 	// Local
 	let listedOptions = options;
 

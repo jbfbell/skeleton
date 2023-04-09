@@ -106,21 +106,21 @@ describe('Autocomplete.svelte', () => {
 		});
 	});
 
-	describe('blocklist', () => {
-		it('does not show items in the blocklist when no search term is present', () => {
-			const blocklist: Value[] = ['pineapple'];
-			const { getByText, queryByText } = render(Autocomplete, { props: { options, input: '', blocklist } });
+	describe('denylist', () => {
+		it('does not show items in the denylist when no search term is present', () => {
+			const denylist: Value[] = ['pineapple'];
+			const { getByText, queryByText } = render(Autocomplete, { props: { options, input: '', denylist } });
 			options.forEach((option) => {
-				if (blocklist.includes(option.value)) {
+				if (denylist.includes(option.value)) {
 					expect(queryByText(option.label)).toBeFalsy();
 				} else {
 					expect(getByText(option.label)).toBeTruthy();
 				}
 			});
 		});
-		it('does not show items in the blocklist when searching', () => {
-			const blocklist: Value[] = ['pineapple'];
-			const { getByText, queryByText } = render(Autocomplete, { props: { options, input: 'ne', blocklist } });
+		it('does not show items in the denylist when searching', () => {
+			const denylist: Value[] = ['pineapple'];
+			const { getByText, queryByText } = render(Autocomplete, { props: { options, input: 'ne', denylist } });
 			const matchingOptions: Label[] = ['Neapolitan'];
 			const notMatchingOptions = options.filter((option) => !matchingOptions.includes(option.label));
 
@@ -131,9 +131,9 @@ describe('Autocomplete.svelte', () => {
 				expect(queryByText(option.label)).toBeFalsy();
 			});
 		});
-		it('shows the empty message if the only matching options are in the blocklist', () => {
-			const blocklist: Value[] = ['pineapple'];
-			const { queryByText } = render(Autocomplete, { props: { options, input: 'pineapple', blocklist } });
+		it('shows the empty message if the only matching options are in the denylist', () => {
+			const denylist: Value[] = ['pineapple'];
+			const { queryByText } = render(Autocomplete, { props: { options, input: 'pineapple', denylist } });
 			expect(queryByText('No Results Found.')).toBeTruthy();
 		});
 	});
